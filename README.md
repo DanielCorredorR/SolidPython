@@ -43,3 +43,24 @@ implementa su propio calculo de area:
 
 Asi se pueden agregar nuevas figuras creando nuevas clases, sin modificar las
 clases ya existentes.
+
+### LSP - Principio de sustitucion de Liskov
+
+Carpeta original: `lsp/`
+
+Carpeta refactorizada: `lsp_solid/`
+
+El archivo original solo tenia una clase `Rectangle` y su descripcion
+correspondia a otro principio. La version refactorizada define una abstraccion
+`Shape` con el comportamiento esperado por cualquier figura.
+
+En lugar de forzar relaciones de herencia que pueden romper expectativas, como
+hacer que un cuadrado herede de un rectangulo con ancho y alto independientes,
+se crean clases concretas que cumplen el mismo contrato:
+
+- `Rectangle`: calcula el area usando ancho y alto.
+- `Square`: calcula el area usando un unico lado.
+- `AreaReporter`: trabaja con cualquier figura que implemente `Shape`.
+
+Asi, cualquier instancia de `Shape` puede sustituirse por otra sin alterar el
+funcionamiento del codigo cliente.
