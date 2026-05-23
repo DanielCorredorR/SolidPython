@@ -64,3 +64,24 @@ se crean clases concretas que cumplen el mismo contrato:
 
 Asi, cualquier instancia de `Shape` puede sustituirse por otra sin alterar el
 funcionamiento del codigo cliente.
+
+### ISP - Principio de segregacion de interfaces
+
+Carpeta original: `isp/`
+
+Carpeta refactorizada: `isp_solid/`
+
+La interfaz original `Printer` obligaba a todas las impresoras a implementar
+`print`, `scan` y `fax`, incluso cuando algunas no soportaban esas operaciones.
+Por eso `OldPrinter` terminaba lanzando errores en metodos que no debia tener.
+
+En la version refactorizada se separan las capacidades en interfaces mas
+pequenas:
+
+- `Printer`: define solo la capacidad de imprimir.
+- `Scanner`: define solo la capacidad de escanear.
+- `Fax`: define solo la capacidad de enviar fax.
+- `OldPrinter`: implementa unicamente `Printer`.
+- `ModernPrinter`: implementa `Printer`, `Scanner` y `Fax`.
+
+Asi, cada cliente depende solo de los metodos que realmente necesita.
