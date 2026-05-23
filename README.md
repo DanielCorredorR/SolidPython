@@ -85,3 +85,22 @@ pequenas:
 - `ModernPrinter`: implementa `Printer`, `Scanner` y `Fax`.
 
 Asi, cada cliente depende solo de los metodos que realmente necesita.
+
+### DIP - Principio de inversion de dependencias
+
+Carpeta original: `dip/`
+
+Carpeta refactorizada: `dip_solid/`
+
+La clase original `FrontEnd` dependia de una implementacion concreta `BackEnd`
+y llamaba directamente un metodo especifico de base de datos. Esto hacia que el
+codigo de alto nivel quedara acoplado a un detalle de bajo nivel.
+
+En la version refactorizada se introduce la abstraccion `DataSource`:
+
+- `FrontEnd`: depende de `DataSource`, no de una clase concreta.
+- `DatabaseDataSource`: obtiene datos desde una base de datos.
+- `ApiDataSource`: obtiene datos desde una API.
+
+Asi, el codigo de alto nivel puede trabajar con diferentes fuentes de datos sin
+modificarse.
